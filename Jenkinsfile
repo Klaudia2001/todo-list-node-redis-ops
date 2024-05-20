@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/Klaudia2001/todo-list-node-redis.git', branch: 'main'
+                git url: 'TWOJ_ADRES_DO_REPO', branch: 'main'
             }
         }
 
@@ -18,10 +18,8 @@ pipeline {
             }
         }
         stage('Run Docker Container') {
-            steps {
-                script {
-                    docker.image("${env.DOCKER_IMAGE}:latest").run("-p 3000:3000")
-                }
+           steps {
+                bat 'docker-compose up -d --build'
             }
         }
     }
